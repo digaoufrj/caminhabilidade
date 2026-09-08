@@ -1,0 +1,130 @@
+id_resposta,campo,valor_original,valor_normalizado,motivo
+R001,bairro,Barra Olimpica,Barra Olímpica,grafia/acentuacao padronizada
+R001,faixa_etaria,< 18 anos,<18,notacao padronizada (hifen simples)
+R002,faixa_etaria,45–59,45-59,notacao padronizada (hifen simples)
+R003,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R004,faixa_etaria,70 ou mais,70+,notacao padronizada (hifen simples)
+R005,faixa_etaria,45–59,45-59,notacao padronizada (hifen simples)
+R006,faixa_etaria,30–44,30-44,notacao padronizada (hifen simples)
+R007,faixa_etaria,45–59,45-59,notacao padronizada (hifen simples)
+R008,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R009,faixa_etaria,70 ou mais,70+,notacao padronizada (hifen simples)
+R010,temperatura_c,23°,23,unidade/simbolo removido
+R010,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R011,temperatura_c,25°,25,unidade/simbolo removido
+R011,faixa_etaria,45–59,45-59,notacao padronizada (hifen simples)
+R012,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R012,temperatura_c,24°,24,unidade/simbolo removido
+R012,faixa_etaria,70 ou mais,70+,notacao padronizada (hifen simples)
+R013,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R013,temperatura_c,25°,25,unidade/simbolo removido
+R013,faixa_etaria,45–59,45-59,notacao padronizada (hifen simples)
+R014,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R014,temperatura_c,22°,22,unidade/simbolo removido
+R014,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R015,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R015,temperatura_c,22°,22,unidade/simbolo removido
+R015,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R016,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R016,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R017,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R017,temperatura_c,21C,21,unidade/simbolo removido
+R017,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R018,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R018,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R019,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R019,temperatura_c,21°,21,unidade/simbolo removido
+R019,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R020,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R020,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R021,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R021,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R022,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R022,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R023,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R023,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R024,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R024,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R025,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R025,temperatura_c,21°,21,unidade/simbolo removido
+R025,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R026,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R026,situacao_locacional,Ceu livre,Céu livre,grafia/acentuacao padronizada
+R026,temperatura_c,22C,22,unidade/simbolo removido
+R026,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R027,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R027,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R028,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R028,temperatura_c,22°,22,unidade/simbolo removido
+R028,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R029,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R029,temperatura_c,21°,21,unidade/simbolo removido
+R029,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R030,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R030,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R031,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R031,situacao_locacional,Nublado,,valor invalido (resposta de clima) -> nulo
+R031,temperatura_c,22°,22,unidade/simbolo removido
+R031,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R032,trecho,CT | CCMN (lado CCMN),CT/CCMN (lado CCMN),separador '|' trocado por '/'
+R032,faixa_etaria,45–59,45-59,notacao padronizada (hifen simples)
+R033,temperatura_c,21°,21,unidade/simbolo removido
+R033,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R034,faixa_etaria,45–59,45-59,notacao padronizada (hifen simples)
+R035,temperatura_c,20°,20,unidade/simbolo removido
+R035,faixa_etaria,30–44,30-44,notacao padronizada (hifen simples)
+R036,faixa_etaria,30–44,30-44,notacao padronizada (hifen simples)
+R037,faixa_etaria,45–59,45-59,notacao padronizada (hifen simples)
+R038,faixa_etaria,30–44,30-44,notacao padronizada (hifen simples)
+R039,faixa_etaria,30–44,30-44,notacao padronizada (hifen simples)
+R041,temperatura_c,21°,21,unidade/simbolo removido
+R041,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R042,temperatura_c,21°,21,unidade/simbolo removido
+R043,temperatura_c,21°C,21,unidade/simbolo removido
+R043,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R044,faixa_etaria,30–44,30-44,notacao padronizada (hifen simples)
+R045,faixa_etaria,45–59,45-59,notacao padronizada (hifen simples)
+R047,temperatura_c,21°C,21,unidade/simbolo removido
+R047,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R048,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R049,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R050,temperatura_c,21°,21,unidade/simbolo removido
+R050,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R051,situacao_locacional,Sombra da árvore,Sombra de árvore,grafia/acentuacao padronizada
+R051,faixa_etaria,30–44,30-44,notacao padronizada (hifen simples)
+R052,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R052,temperatura_c,27°,27,unidade/simbolo removido
+R052,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R053,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R053,temperatura_c,27°,27,unidade/simbolo removido
+R053,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R054,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R054,temperatura_c,27°,27,unidade/simbolo removido
+R054,faixa_etaria,< 18 anos,<18,notacao padronizada (hifen simples)
+R055,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R055,temperatura_c,28°,28,unidade/simbolo removido
+R055,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R056,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R056,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R057,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R057,temperatura_c,38,28,erro de digitacao (dia/trecho com 27-29 °C)
+R057,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R058,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R058,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R059,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R059,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R060,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R060,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R061,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R061,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R062,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R062,temperatura_c,29°c,29,unidade/simbolo removido
+R062,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R063,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R063,faixa_etaria,70 ou mais,70+,notacao padronizada (hifen simples)
+R064,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R064,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R065,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R065,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)
+R066,trecho,CT | CCMN (lado CT),CT/CCMN (lado CT),separador '|' trocado por '/'
+R066,faixa_etaria,18–29,18-29,notacao padronizada (hifen simples)

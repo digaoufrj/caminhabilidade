@@ -1,0 +1,91 @@
+coluna,tipo,descricao,valores,preenchidas,vazias
+id_resposta,Identificador,"Chave primária da resposta, R001–R066, na ordem original do formulário.",66 valores distintos,66,0
+bairro,Categórica,"Bairro do trecho avaliado, grafia padronizada.",Fundão | Barra Olímpica | Barra da Tijuca | Camorim,66,0
+trecho,Categórica,Trecho de rua avaliado. Separador '|' do original trocado por '/'.,CT/CCMN (lado CCMN) | Cenpes | CT/CCMN (lado CT) | Parque | Av. Das Américas | Estrada dos Bandeirantes,66,0
+situacao_locacional,Categórica,"Abrigo do ponto onde a pessoa estava: céu livre, sombra de árvore, sombra do prédio.",Céu livre | Sombra de árvore | Sombra do prédio,65,1
+data,Data ISO,"Data da entrevista, AAAA-MM-DD. Ano 2026 informado pela equipe (o formulário só registrava dia e mês).",2026-06-16 | 2026-06-18 | 2026-06-23 | 2026-05-16 | 2026-06-01,66,0
+hora,Hora,"Hora da entrevista, HH:MM em 24h.",32 valores distintos,66,0
+data_hora_iso,Timestamp ISO,"Data e hora combinadas, AAAA-MM-DDTHH:MM.",38 valores distintos,66,0
+mes,Categórica,"Mês da coleta, derivado da data.",Junho | Maio,66,0
+periodo_dia,Categórica,"Manhã (<12h), Tarde (12–18h) ou Noite (≥18h), derivado da hora.",Manhã | Tarde,66,0
+clima,Categórica,"Condição do céu registrada pelo entrevistador: Ensolarado, Nublado, Chuva.",Ensolarado | Nublado | Chuva,66,0
+temperatura_c,Inteiro (°C),Temperatura do ar. Unidade e símbolo de grau removidos do texto original. Vazio = não medido (3 casos).,mín 20 · máx 29,63,3
+isolamento_roupa,Ordinal,Faixa de isolamento térmico da vestimenta em clo. Vazio em 4 casos.,"0,5–1 clo (meia estação) | Acima de 1 clo (inverno) | Até 0,5 clo (verão)",62,4
+clo_ordinal,Ordinal 1–3,"Codificação da faixa de clo: 1 = verão, 2 = meia estação, 3 = inverno.",2 | 3 | 1,62,4
+clo_ref,Decimal (clo),"Valor de clo representativo da faixa: 0,5 / 0,75 / 1,25. Para cálculo de conforto térmico.",0.75 | 1.25 | 0.5,62,4
+perfil_respondente,Categórica,"Vínculo com o território: morador, estudante, trabalhador da região, visitante. Proxy de moradia.",Estudante | Morador | Trabalhador da região | Visitante,66,0
+usa_remedio_continuo,Binária,Sim/Não para uso de medicação contínua.,Não | Sim,66,0
+comorbidade,Texto livre,Comorbidade declarada. Vazio quando não há (53 casos).,Diabetes | Pressão alta | Problemas respiratórios | Psiquiátrico | Alergia | Anticoncepcional | Hipotireoidismo,13,53
+faixa_etaria,Ordinal,"Faixa de idade. Notação uniformizada para hífen simples: <18, 18-29, 30-44, 45-59, 60-69, 70+.",18-29 | 45-59 | 30-44 | 70+ | 60-69 | <18,66,0
+faixa_etaria_ordem,Ordinal 1–6,"Ordem da faixa etária, para ordenação e correlação.",2 | 4 | 3 | 6 | 5 | 1,66,0
+genero,Categórica,Gênero autodeclarado.,Masculino | Feminino | Prefiro não dizer,66,0
+raca_cor,Categórica,"Raça/cor autodeclarada, nas categorias do IBGE presentes na amostra: Branca, Parda, Preta.",Branca | Parda | Preta,66,0
+raca_cor_agrupada,Categórica,"Agrupamento Branca vs. Preta/Parda, para os testes com dois grupos.",Preta/Parda | Branca,66,0
+escolaridade,Ordinal,Nível de escolarização declarado. Proxy socioeconômica — o formulário não pergunta renda.,"Educação Superior incompleta | Educação Superior completa | Ensino Médio completo | Ensino Médio incompleto | Ensino Fundamental incompleto | Pós-graduação (especialização, mestrado, doutorado)",66,0
+escolaridade_ordem,Ordinal 1–7,Ordem do nível de escolarização.,5 | 4 | 6 | 3 | 1 | 7,66,0
+freq_caminhada,Ordinal,Frequência com que caminha pelo bairro ou pela cidade. Vazio em 3 casos.,Diariamente | Alguns dias da semana | Esporadicamente | Todos os dias da semana | Só os fins de semana,63,3
+freq_caminhada_ordem,Ordinal 1–4,1 = esporadicamente a 4 = diariamente.,4 | 3 | 1 | 2,63,3
+motivo_caminhar,Categórica,Principal motivo para caminhar. Vazio em 2 casos.,Lazer | Estudo | Trabalho | Transporte público | Outros,64,2
+barreira_principal,Categórica,Principal barreira percebida na região. Vazio em 5 casos.,Insegurança | Calçadas ruins | Poluição | Falta de sombra,61,5
+infra_adequada_pedestres,Ordinal,Percebe infraestrutura adequada para pedestres: Sim / Mais ou menos / Não.,Não | Mais ou menos | Sim,66,0
+infra_adequada_ordem,Ordinal 0–2,"0 = Não, 1 = Mais ou menos, 2 = Sim.",0 | 1 | 2,66,0
+nota_largura_calcada,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: largura da calçada.,3 | 2 | 4 | 1 | 5,66,0
+nota_pavimentacao,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: pavimentação.,4 | 3 | 2 | 5 | 1,66,0
+nota_espaco_livre,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: espaço livre para circulação de pedestres.,3 | 4 | 2 | 1 | 5,66,0
+nota_import_arvores_sombra,Ordinal 1–5,"Nota de 1 (muito ruim) a 5 (muito bom) para: IMPORTÂNCIA de ter árvores e sombra no percurso (mede importância, não qualidade).",5 | 4 | 3 | 1,66,0
+nota_seguranca_dia,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: sensação de segurança caminhando de dia.,5 | 4 | 3 | 1 | 2,66,0
+nota_seguranca_noite,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: sensação de segurança caminhando de noite.,1 | 2 | 3 | 4 | 5,66,0
+nota_acess_pcd_idosos,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: acessibilidade para idosos e pessoas com deficiência.,2 | 1 | 3 | 4 | 5,66,0
+nota_acess_mulher_crianca,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: acessibilidade para mulheres com crianças.,3 | 2 | 1 | 5 | 4,66,0
+nota_estado_bancos,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: estado geral dos bancos.,3 | 4 | 1 | 2 | 5,64,2
+nota_iluminacao_publica,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: iluminação pública funcionando.,3 | 2 | 1 | 4 | 5,66,0
+nota_faixas_pedestre,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: faixas de pedestre visíveis.,3 | 2 | 5 | 1 | 4,66,0
+nota_placas_semaforos,Ordinal 1–5,Nota de 1 (muito ruim) a 5 (muito bom) para: placas e semáforos legíveis.,3 | 5 | 2 | 4 | 1,66,0
+evita_areas_inseguranca,Binária,Declara evitar áreas por questões de segurança.,Sim | Não,66,0
+dificuldades,Multivalorada,"Dificuldades citadas no trecho, separadas por '; '. Ver dificuldades_long.csv para a forma normalizada.",32 valores distintos,62,4
+dificuldades_n,Contagem,"Número de dificuldades citadas, de 0 a 7.",1 | 2 | 4 | 3 | 0 | 5 | 7 | 6,66,0
+dif_construcoes,Binária 0/1,"1 se a pessoa citou a dificuldade: construções (residências, lojas, etc). Pergunta de múltipla escolha, então as colunas dif_* não somam 1.",0 | 1,66,0
+dif_falta_bancos,Binária 0/1,"1 se a pessoa citou a dificuldade: falta de bancos ou locais para descanso. Pergunta de múltipla escolha, então as colunas dif_* não somam 1.",0 | 1,66,0
+dif_carros_estacionados,Binária 0/1,"1 se a pessoa citou a dificuldade: excesso de carros e/ou motos estacionados. Pergunta de múltipla escolha, então as colunas dif_* não somam 1.",0 | 1,66,0
+dif_inseguranca,Binária 0/1,"1 se a pessoa citou a dificuldade: sensação de insegurança. Pergunta de múltipla escolha, então as colunas dif_* não somam 1.",1 | 0,66,0
+dif_transito_perigoso,Binária 0/1,"1 se a pessoa citou a dificuldade: trânsito perigoso. Pergunta de múltipla escolha, então as colunas dif_* não somam 1.",0 | 1,66,0
+dif_calcadas_ruins,Binária 0/1,"1 se a pessoa citou a dificuldade: calçadas ruins. Pergunta de múltipla escolha, então as colunas dif_* não somam 1.",0 | 1,66,0
+dif_falta_sombra,Binária 0/1,"1 se a pessoa citou a dificuldade: falta de sombra. Pergunta de múltipla escolha, então as colunas dif_* não somam 1.",0 | 1,66,0
+presenca_bancos,Ordinal,Sim / Parcial / Não para: bancos disponíveis ao longo do trecho.,Não | Parcial | Sim,66,0
+presenca_bancos_ord,Ordinal 0–2,"Codificação de presenca_bancos: 0 = Não, 1 = Parcial, 2 = Sim.",0 | 1 | 2,66,0
+presenca_lixeiras,Ordinal,Sim / Parcial / Não para: lixeiras em pontos estratégicos.,Não | Parcial | Sim,65,1
+presenca_lixeiras_ord,Ordinal 0–2,"Codificação de presenca_lixeiras: 0 = Não, 1 = Parcial, 2 = Sim.",0 | 1 | 2,65,1
+presenca_ponto_onibus,Ordinal,Sim / Parcial / Não para: ponto de ônibus acessível e em bom estado.,Parcial | Sim | Não,66,0
+presenca_ponto_onibus_ord,Ordinal 0–2,"Codificação de presenca_ponto_onibus: 0 = Não, 1 = Parcial, 2 = Sim.",1 | 2 | 0,66,0
+presenca_sinal_pedestre,Ordinal,Sim / Parcial / Não para: placas ou sinalização para pedestres.,Parcial | Não | Sim,66,0
+presenca_sinal_pedestre_ord,Ordinal 0–2,"Codificação de presenca_sinal_pedestre: 0 = Não, 1 = Parcial, 2 = Sim.",1 | 0 | 2,66,0
+rampas_cadeirantes,Ordinal,Rampas para cadeirantes. Escala original 'Atende plenamente / parcialmente / Não atende' harmonizada para Sim / Parcial / Não.,Parcial | Não | Sim,66,0
+rampas_cadeirantes_ord,Ordinal 0–2,"Codificação de rampas_cadeirantes: 0 = Não atende, 1 = Atende parcialmente, 2 = Atende plenamente.",1 | 0 | 2,66,0
+bancos_com_sombra,Ordinal,Sim / Parcial / Não para: bancos com sombra ou proteção climática.,Parcial | Não | Sim,64,2
+bancos_com_sombra_ord,Ordinal 0–2,"Codificação de bancos_com_sombra: 0 = Não, 1 = Parcial, 2 = Sim.",1 | 0 | 2,64,2
+sinalizacao_inclusiva,Ordinal,"Sim / Parcial / Não para: sinalização adequada para idosos, crianças e pessoas com deficiência.",Não | Parcial | Sim,65,1
+sinalizacao_inclusiva_ord,Ordinal 0–2,"Codificação de sinalizacao_inclusiva: 0 = Não, 1 = Parcial, 2 = Sim.",0 | 1 | 2,65,1
+existe_parada_transporte,Ordinal,Sim / Parcial / Não para: existência de paradas de transporte público.,Sim | Parcial | Não,65,1
+existe_parada_transporte_ord,Ordinal 0–2,"Codificação de existe_parada_transporte: 0 = Não, 1 = Parcial, 2 = Sim.",2 | 1 | 0,65,1
+parada_com_protecao_climatica,Ordinal,Sim / Parcial / Não para: paradas de transporte com proteção climática.,Parcial | Não | Sim,66,0
+parada_com_protecao_climatica_ord,Ordinal 0–2,"Codificação de parada_com_protecao_climatica: 0 = Não, 1 = Parcial, 2 = Sim.",1 | 0 | 2,66,0
+utiliza_mobiliario,Ordinal,Sim / Parcial / Não para: a pessoa utiliza o mobiliário urbano do trecho.,Sim | Não | Parcial,65,1
+utiliza_mobiliario_ord,Ordinal 0–2,"Codificação de utiliza_mobiliario: 0 = Não, 1 = Parcial, 2 = Sim.",2 | 0 | 1,65,1
+sinalizacao_ajuda_seguranca,Ordinal,Sim / Parcial / Não para: a pessoa acha que a sinalização ajuda a caminhar com segurança.,Sim | Não | Parcial,66,0
+sinalizacao_ajuda_seguranca_ord,Ordinal 0–2,"Codificação de sinalizacao_ajuda_seguranca: 0 = Não, 1 = Parcial, 2 = Sim.",2 | 0 | 1,66,0
+sensacao_termica,Ordinal,Sensação térmica declarada no momento da entrevista.,Nem frio nem calor | Um pouco de frio | Um pouco de calor | Frio | Muito frio | Calor,66,0
+sensacao_termica_escala,Ordinal −3…+3,"Sensação térmica na escala ASHRAE de 7 pontos: −3 muito frio, 0 neutro, +3 muito calor.",0 | -1 | 1 | -2 | -3 | 2,66,0
+preferencia_termica,Ordinal,Como preferiria estar se sentindo.,Assim mesmo | Um pouco mais refrescado | Mais aquecido | Um pouco mais aquecido | Mais refrescado | Bem mais aquecido,66,0
+preferencia_termica_escala,Ordinal −3…+3,"Preferência térmica: negativo quer se refrescar, 0 assim mesmo, positivo quer se aquecer.",0 | -1 | 2 | 1 | -2 | 3,66,0
+conforto_termico,Ordinal,Classificação do conforto térmico do trecho.,Confortável | Um pouco desconfortável | Desconfortável | Muito desconfortável,66,0
+conforto_termico_escala,Ordinal 0–3,"0 = confortável, 3 = muito desconfortável. Valores altos significam pior experiência.",0 | 1 | 2 | 3,66,0
+percepcao_sol,Categórica,Avaliação do sol no momento da entrevista.,OK | Você prefere mais | Muito sol,66,0
+percepcao_vento,Categórica,Avaliação do vento no momento da entrevista.,OK | Pouco vento | Ventoso | Muito vento | Sem vento,66,0
+percepcao_umidade,Categórica,Avaliação da umidade no momento da entrevista.,OK | Úmido | Seco | Muito úmido,66,0
+confortavel_cond_atmosfericas,Ordinal,Sente-se confortável quanto às condições atmosféricas. 'Mais ou Menos' padronizado para 'Mais ou menos'.,Sim | Mais ou menos | Não,65,1
+confortavel_cond_atm_ordem,Ordinal 0–2,"0 = Não, 1 = Mais ou menos, 2 = Sim.",2 | 1 | 0,65,1
+idx_infra_fisica,Decimal 1–5,"Índice derivado: média de largura da calçada, pavimentação, espaço livre, faixas, placas, iluminação e estado dos bancos.",mín 1.83 · máx 4.71,66,0
+idx_seguranca,Decimal 1–5,Índice derivado: média das notas de segurança de dia e de noite.,mín 1 · máx 5,66,0
+idx_acessibilidade,Decimal 1–5,Índice derivado: média das notas de acessibilidade para idosos/PCD e para mulheres com crianças.,mín 1 · máx 5,66,0
+nota_caminhabilidade,Inteiro 0–10,Nota geral de caminhabilidade do trecho. Vazio em 1 caso.,mín 2 · máx 10,65,1
+obs_tratamento,Texto livre,Registro por linha de toda alteração ou ausência tratada. Vazio = dado íntegro no original.,isolamento da roupa nao informado | temperatura nao informada | bairro padronizado | isolamento da roupa nao informado; nota geral nao informada | situacao_locacional invalida ('Nublado') -> nulo | temperatura 38 -> 28 (erro de digitacao) | temperatura nao informada; isolamento da roupa nao informado,9,57
