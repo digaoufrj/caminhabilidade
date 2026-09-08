@@ -1,10 +1,11 @@
-# Pesquisa de caminhabilidade e conforto térmico — dados tratados
+# Caminhabilidade urbana: dados tratados e painel
 
 ## Como rodar
 
-A página lê o CSV em tempo de execução, então precisa ser servida por HTTP — abrir o
-`index.html` com duplo clique não funciona (o navegador bloqueia leitura de arquivo no
-protocolo `file://`, e a própria página avisa isso se você tentar).
+A página lê o CSV na hora de abrir, então precisa ser servida por HTTP. Abrir o
+`index.html` com duplo clique não funciona, porque o navegador bloqueia a leitura de
+arquivos no protocolo `file://`. Se você tentar, a própria página avisa e mostra o
+comando abaixo.
 
 Na raiz do projeto:
 
@@ -28,7 +29,7 @@ Server do VS Code). Não há passo de build, dependência de pacote nem framewor
 ├── dados_tratados/
 │   ├── dados_normalizados.csv       ← a fonte que a página lê
 │   ├── dicionario_dados.csv         dicionário das 90 colunas
-│   ├── dificuldades_long.csv        múltipla escolha em formato longo (3FN)
+│   ├── dificuldades_long.csv        uma linha por dificuldade citada
 │   ├── log_tratamento.csv           as 129 alterações feitas no dado bruto
 │   └── normalizar.py                script que regenera tudo acima
 ├── DADOS_NAO_APURADOS - ....csv     o export original do Google Forms
@@ -36,12 +37,12 @@ Server do VS Code). Não há passo de build, dependência de pacote nem framewor
 └── LEIA-ME.md
 ```
 
-O CSV tratado é ao mesmo tempo o entregável e a fonte de dados da página — não existe
-cópia dos dados dentro do código. Trocar `dados_tratados/dados_normalizados.csv` por uma
+O CSV tratado é ao mesmo tempo o arquivo de entrega e a fonte de dados da página, e não
+existe nenhuma cópia dos dados dentro do código. Trocar `dados_tratados/dados_normalizados.csv` por uma
 versão com mais respostas atualiza todos os gráficos, filtros e contagens sem tocar em
 nenhum arquivo `.js`. As contagens do cabeçalho (respostas, trechos, variáveis, período
 de coleta) são derivadas do arquivo; só os números citados nos textos de análise estão
-escritos à mão, porque descrevem achados da amostra atual.
+escritos à mão, porque descrevem os resultados destas 66 respostas.
 
 ### Para regerar o CSV a partir do bruto
 
@@ -49,7 +50,7 @@ escritos à mão, porque descrevem achados da amostra atual.
 python3 dados_tratados/normalizar.py
 ```
 
-Usa apenas a biblioteca padrão do Python — sem pandas.
+Usa apenas a biblioteca padrão do Python, sem pandas.
 
 ## Como publicar no GitHub Pages
 
@@ -63,36 +64,73 @@ O projeto já está no formato que o Pages espera (site estático servido da rai
 
 Os caminhos são todos relativos, então funciona em subdiretório de repositório sem
 ajuste nenhum. As duas únicas requisições externas são as fontes do Google Fonts, que
-têm pilha de fallback declarada — a página continua legível se elas não carregarem.
+têm fontes de reserva declaradas, então a página continua legível se elas não carregarem.
 
 ## Como o CSV foi padronizado
 
-- **Temperatura** — unidade e símbolo de grau removidos (`21°C`, `22C `, `29°c` → `21`, `22`, `29`) em 25 registros.
-- **Bairro, trecho, situação locacional** — grafia e acentuação unificadas (`Barra Olimpica` → `Barra Olímpica`, `Ceu livre` → `Céu livre`, `Sombra da árvore` → `Sombra de árvore`). O separador `|` do nome do trecho virou `/` para não conflitar com ferramentas que usam pipe como delimitador.
-- **Faixa etária** — notação uniformizada para hífen simples (`18–29` e `60-69` misturavam en-dash e hífen; `< 18 anos` → `<18`).
-- **Escalas Sim/Parcial/Não** — a pergunta de rampas usava `Atende plenamente / parcialmente / Não atende`; foi harmonizada com as demais e ganhou coluna `_ord` (0/1/2), tornando os itens comparáveis entre si.
-- **Escalas térmicas** — sensação e preferência codificadas na escala ASHRAE de 7 pontos (−3 a +3); conforto em 0–3; faixa de clo em valor numérico de referência (`clo_ref`).
-- **Múltipla escolha** — `dificuldades` virou 7 colunas binárias `dif_*` mais a contagem `dificuldades_n`. O split respeita a opção *"Construções (residências, lojas, etc)"*, que contém vírgulas.
-- **Colunas derivadas** — `idx_infra_fisica`, `idx_seguranca`, `idx_acessibilidade` (médias temáticas das notas 1–5), `periodo_dia`, `raca_cor_agrupada` e as colunas `_ordem`/`_ord` para ordenar e correlacionar.
-- **Datas** — `16 de maio 17:15` → `2026-05-16`, `17:15`, `2026-05-16T17:15`.
+- **Temperatura**: estava escrita de várias formas (`21°C`, `22C `, `29°c`) e ficou só o número,
+  em 25 registros.
+- **Bairro, trecho e tipo de abrigo**: escrita e acentos unificados (`Barra Olimpica` virou
+  `Barra Olímpica`, `Ceu livre` virou `Céu livre`, `Sombra da árvore` virou `Sombra de árvore`).
+  O `|` do nome do trecho virou `/`, para não conflitar com ferramentas que usam esse caractere
+  como separador de coluna.
+- **Faixa etária**: todas no mesmo formato. O original misturava dois tipos de traço
+  (`18–29` e `60-69`), e `< 18 anos` virou `<18`.
+- **Respostas de Sim / Parcial / Não**: a pergunta sobre rampas usava
+  `Atende plenamente / parcialmente / Não atende`, diferente de todas as outras. Ficou no mesmo
+  padrão das demais e ganhou uma coluna `_ord` com 0, 1 e 2, o que deixa os itens comparáveis
+  entre si.
+- **Respostas sobre calor e frio**: a sensação e a preferência foram numeradas de −3 a +3, o
+  conforto de 0 a 3, e a faixa de roupa ganhou um valor numérico na coluna `clo_ref`.
+- **Pergunta de marcar várias opções**: a coluna `dificuldades` virou 7 colunas de 0 e 1
+  (`dif_*`) mais a contagem `dificuldades_n`. A separação respeita a opção
+  *"Construções (residências, lojas, etc)"*, que tem vírgulas dentro do próprio texto.
+- **Colunas criadas por mim**: `idx_infra_fisica`, `idx_seguranca` e `idx_acessibilidade` são
+  médias temáticas das notas de 1 a 5. Também criei `periodo_dia`, `raca_cor_agrupada` e as
+  colunas `_ordem` e `_ord`, que servem para ordenar e para calcular correlações.
+- **Datas**: `16 de maio 17:15` virou `2026-05-16`, `17:15` e `2026-05-16T17:15`.
 
-### Decisões que alteraram valor
+### As três decisões que mudaram algum valor
 
-1. **Um 38 °C virou 28 °C** (registro R057, 23/jun 13:30, CT/CCMN). Todas as outras medições do mesmo dia e trecho ficaram entre 27 e 29 °C — erro de digitação. Está marcado em `obs_tratamento` e em `log_tratamento.csv`.
-2. **Uma situação locacional inválida virou nulo** (R031 trazia `Nublado`, que é resposta de clima). Não havia como inferir o valor correto.
-3. **Vazios ficaram vazios, sem imputação**: 3 temperaturas, 5 isolamentos de vestimenta e 1 nota geral. A coluna `obs_tratamento` sinaliza cada caso.
+1. **Uma temperatura de 38 °C virou 28 °C** (resposta R057, 23/jun 13:30, CT/CCMN). Todas as
+   outras medições do mesmo dia e do mesmo trecho ficaram entre 27 e 29 °C, então era erro de
+   digitação. Está marcado na coluna `obs_tratamento` e no `log_tratamento.csv`.
+2. **Um tipo de abrigo inválido ficou em branco** (a resposta R031 trazia `Nublado`, que é
+   resposta de clima). Não havia como saber o valor certo.
+3. **Os campos vazios continuaram vazios**, sem preencher com estimativa: 3 temperaturas,
+   5 respostas sobre a roupa e 1 nota geral. A coluna `obs_tratamento` marca cada caso.
 
-## Achados principais
+## O que os dados mostram
 
-1. **O gap de sombra é o achado mais forte.** Árvores e sombra têm a maior nota média da pesquisa (4,62 de 5), mas 67% das pessoas pretas citaram falta de sombra contra 16% das brancas — 51 pontos de diferença, p = 0,006 num teste de permutação. Excesso de carros sobre a calçada segue o mesmo padrão (44% vs 12%, p = 0,046).
-2. **A nota de caminhabilidade cai de brancos (7,32) para pardos (6,80) e pretos (5,44)** e o gradiente resiste ao controle por bairro (7,17 / 6,64 / 5,88 só no Fundão) e por vínculo (7,06 / 6,12 / 4,50 só entre estudantes). Com n = 66 fica em p ≈ 0,10 — tendência consistente, não conclusiva.
-3. **O índice de infraestrutura física quase não varia por raça** (2,92 / 2,79 / 2,93 no Fundão). A desigualdade aparece na sensação de segurança e na privação de sombra, não no julgamento técnico da calçada.
-4. **Segurança noturna é o pior indicador da pesquisa** (2,03 de 5) e 85% da amostra evita trajetos por medo. Mulheres pontuam 1,70 contra 2,29 dos homens.
-5. **A sombra desloca a sensação térmica**: sob árvore a sensação média é −0,05 contra −0,71 a céu livre, apesar de as medições sob árvore terem ocorrido em temperaturas mais altas.
+1. **A diferença mais forte é a de sombra.** Árvores e sombra têm a maior nota média da pesquisa
+   (4,62 de 5), mas 67% das pessoas pretas responderam que falta sombra no trecho, contra 16% das
+   brancas. São 51 pontos de diferença, e a chance de isso ser efeito de quem por acaso respondeu
+   é de 0,6%. Carro estacionado na calçada segue o mesmo padrão: 44% contra 12%, com 4,6% de chance
+   de ser acaso.
+2. **A nota do trecho cai de 7,32 entre pessoas brancas para 6,80 entre pardas e 5,44 entre
+   pretas.** Essa ordem continua a mesma olhando só para o Fundão (7,17 / 6,64 / 5,88) e só para
+   os estudantes (7,06 / 6,12 / 4,50). Mas com 66 respostas a chance de ser acaso é de cerca de
+   10%, alta demais para tratar como conclusão.
+3. **A avaliação da calçada em si quase não muda entre os grupos** (índice de 2,92 / 2,79 / 2,93
+   dentro do Fundão). A diferença aparece na sensação de segurança e na falta de sombra, não no
+   julgamento técnico do piso e da largura.
+4. **Segurança de noite é a pior nota da pesquisa** (2,03 de 5), e 85% das pessoas disseram que
+   evitam certos caminhos por medo. As mulheres deram 1,70 e os homens 2,29.
+5. **A sombra muda a sensação de calor.** Quem estava na sombra de árvore ficou mais perto do
+   neutro (−0,05) do que quem estava a céu livre (−0,71), mesmo tendo sido entrevistado em
+   temperaturas mais altas.
 
-## Ressalvas metodológicas
+## O que a pesquisa não permite concluir
 
-- **A amostra é universitária**: 39 das 66 pessoas são estudantes e 55 estão na Ilha do Fundão. Não generaliza para a cidade.
-- **Não há pergunta de renda nem de tipo de moradia.** Onde a análise fala de moradia, a proxy é `perfil_respondente` (morador / estudante / trabalhador / visitante) somada ao bairro; onde fala de perfil econômico, a proxy é a escolaridade. Incluir renda e tipo de domicílio numa próxima rodada tornaria essa parte conclusiva.
-- **n pequeno nos subgrupos**: 9 pessoas pretas, 3 com ensino fundamental incompleto, 2 com pós-graduação. As médias desses grupos são instáveis.
-- **Efeito de halo**: as correlações cruzam percepções da mesma pessoa na mesma entrevista, então parte da associação é a própria disposição de quem respondeu.
+- **Quem respondeu é, em boa parte, gente da universidade**: 39 das 66 pessoas são estudantes e
+  55 foram entrevistadas na Ilha do Fundão. Os resultados falam sobre esses trechos, e não sobre a
+  cidade toda.
+- **Não existe pergunta de renda nem de tipo de moradia no formulário.** Onde a análise fala de
+  moradia, o que está sendo usado no lugar é a coluna `perfil_respondente` (moradora, estudante,
+  trabalhadora, visitante) junto com o bairro. Onde fala de perfil econômico, o que está sendo
+  usado é a escolaridade. Incluir renda e tipo de casa numa próxima rodada deixaria essa parte
+  bem mais firme.
+- **Alguns grupos têm pouquíssimas respostas**: 9 pessoas pretas, 3 com ensino fundamental
+  incompleto, 2 com pós-graduação. As médias desses grupos variam muito e não são confiáveis.
+- **As respostas vieram todas da mesma pessoa na mesma entrevista.** Quem gostou do trecho tende
+  a dar nota boa para tudo, e isso infla as correlações. Andar junto não quer dizer causar.

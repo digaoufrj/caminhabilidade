@@ -89,13 +89,13 @@ async function carregar(){
 
   if(location.protocol === "file:"){
     bootErro("Precisa de um servidor local", `
-      <p>A página lê o arquivo <code>${FONTE_CSV}</code> em tempo de execução, e o navegador
-      bloqueia leitura de arquivos quando a página é aberta com duplo clique
+      <p>Esta página lê o arquivo <code>${FONTE_CSV}</code> na hora de abrir, e o navegador
+      bloqueia a leitura de arquivos quando a página é aberta com duplo clique
       (protocolo <code>file://</code>).</p>
       <p>Rode um servidor estático na raiz do projeto e abra pelo endereço que ele imprimir:</p>
       <pre>python3 -m http.server 8000
 # depois abra http://localhost:8000</pre>
-      <p>No GitHub Pages isso não acontece — lá a página já é servida por HTTP.</p>`);
+      <p>No GitHub Pages isso não acontece, porque lá a página já é servida por HTTP.</p>`);
     return;
   }
 
@@ -121,8 +121,8 @@ async function carregar(){
   }catch(e){
     bootErro("O CSV não está no formato esperado", `
       <p>${String(e.message || e)}</p>
-      <p>O painel espera o CSV gerado por <code>dados_tratados/normalizar.py</code>,
-      com uma linha por resposta e a coluna <code>id_resposta</code> como chave.</p>`);
+      <p>O painel espera o CSV gerado pelo <code>dados_tratados/normalizar.py</code>,
+      com uma linha por resposta e a coluna <code>id_resposta</code> identificando cada uma.</p>`);
     return;
   }
 

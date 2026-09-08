@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sombra e Calçada — pesquisa de caminhabilidade</title>
-<meta name="description" content="Painel interativo de uma pesquisa de campo sobre caminhabilidade e conforto térmico em seis trechos do Rio de Janeiro, cruzando a nota do trecho com o perfil racial e socioeconômico de quem caminha.">
+<title>UFRJ - Caminhabilidade</title>
+<meta name="description" content="Resultados de uma pesquisa de campo sobre caminhada e conforto térmico em seis trechos do Rio de Janeiro, comparando a nota de cada trecho com o perfil de quem respondeu.">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127795;</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,18 +20,19 @@
 
 <header class="top">
   <div class="top-in">
-    <span class="eyebrow">Pesquisa de campo · caminhabilidade e conforto térmico</span>
-    <h1>Sombra e Calçada</h1>
-    <p class="sub">66 entrevistas em seis trechos do Rio de Janeiro — Ilha do Fundão (UFRJ),
-      Parque Olímpico da Barra, Av. das Américas e Estrada dos Bandeirantes — cruzando a nota de
-      caminhabilidade do trecho com o perfil racial, etário e socioeconômico de quem caminha.</p>
+    <span class="eyebrow">Pesquisa de campo · Rio de Janeiro · 2026</span>
+    <h1>Caminhabilidade Urbana</h1>
+    <p class="sub">66 entrevistas em seis trechos do Rio de Janeiro: Ilha do Fundão (UFRJ),
+      Parque Olímpico da Barra, Av. das Américas e Estrada dos Bandeirantes. A pesquisa compara a
+      nota que cada pessoa deu ao trecho onde caminha com a idade, a raça e a escolaridade de
+      quem respondeu.</p>
     <p class="meta-line">
       <span>Coleta <b id="m-periodo">–</b></span>
       <span>Respostas <b id="m-respostas">–</b></span>
       <span>Trechos <b id="m-trechos">–</b></span>
       <span>Variáveis <b id="m-variaveis">–</b></span>
-      <span>Escala térmica <b>ASHRAE −3…+3</b></span>
-      <span>Vestimenta <b>clo</b></span>
+      <span>Nota do trecho <b>0 a 10</b></span>
+      <span>Sensação térmica <b>−3 a +3</b></span>
     </p>
   </div>
   <div class="filters">
@@ -55,13 +56,14 @@
   <section id="sec-sintese" style="margin-top:28px">
     <div class="thesis">
       <div>
-        <span class="eyebrow">O achado central</span>
-        <p class="hl">Todo mundo quer sombra. Quem sente a falta dela não é todo mundo.</p>
-        <p>Árvores e sombra recebem a nota média mais alta de toda a pesquisa — <b>4,62 de 5</b>, com
-          50 das 66 pessoas dando nota máxima. Mas, quando perguntadas sobre o que <em>falta</em> no
-          trecho, <b>67% das pessoas pretas citaram falta de sombra, contra 16% das brancas</b> — uma
-          diferença de 51 pontos percentuais que resiste a um teste de permutação (p = 0,006).
-          O desejo de sombra é universal; a privação é desigual.</p>
+        <span class="eyebrow">Principal resultado</span>
+        <p class="hl">A sombra é o item mais valorizado da pesquisa, e é também o que falta de forma
+          mais desigual entre os grupos.</p>
+        <p>Árvores e sombra tiveram a maior nota média da pesquisa, <b>4,62 de 5</b>, com 50 das
+          66 pessoas dando nota máxima. Quando a pergunta foi sobre o que <em>falta</em> no trecho,
+          <b>67% das pessoas pretas responderam falta de sombra, contra 16% das brancas</b>.
+          A diferença é de 51 pontos percentuais. Testei se ela poderia ser apenas efeito de quem
+          por acaso foi entrevistado, e a chance disso é de 0,6%.</p>
       </div>
       <div class="gapbars" id="thesisbars"></div>
     </div>
@@ -71,17 +73,20 @@
   <!-- ================= 2. equidade ================= -->
   <section id="sec-equidade">
     <div class="sec-head"><span class="num">01</span><h2>Perfil racial e a qualidade da caminhada</h2></div>
-    <p class="sec-note">A nota geral de caminhabilidade cai de forma monotônica de brancos para pardos
-      e pretos, e o gradiente sobrevive quando se controla por local e por vínculo — ou seja, não é apenas
-      efeito de as pessoas estarem avaliando trechos diferentes. Com n = 66 a diferença fica em p ≈ 0,10:
-      é uma tendência consistente, não um resultado estatisticamente conclusivo.</p>
+    <p class="sec-note">A nota média do trecho cai conforme a raça declarada: 7,3 entre as pessoas
+      brancas, 6,8 entre as pardas e 5,4 entre as pretas. Essa ordem continua a mesma quando olho só
+      para quem foi entrevistado na Ilha do Fundão e só para os estudantes, o que indica que ela não
+      vem apenas de as pessoas estarem avaliando lugares diferentes. Ainda assim, com 66 respostas a
+      diferença pode ser efeito de quem por acaso respondeu: a chance disso é de cerca de 10%, alta
+      demais para tratar como conclusão.</p>
     <div class="grid">
       <div class="card c7">
         <div class="card-top"><div>
           <span class="eyebrow">Nota 0–10 · média por grupo</span>
-          <h3>O gradiente resiste aos controles</h3>
-          <p class="read">Três recortes da mesma pergunta. Se o gradiente fosse artefato do local ou do
-            vínculo, ele desapareceria nos painéis 2 e 3 — ele se acentua.</p>
+          <h3>A diferença aparece nas três comparações</h3>
+          <p class="read">A mesma pergunta vista de três formas. Se a diferença viesse do lugar ou do
+            vínculo das pessoas com a região, ela sumiria na segunda e na terceira comparação. Acontece
+            o contrário: ela fica maior.</p>
         </div><button class="tt-btn" data-tt="ch-grad" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-grad"></div>
         <div class="tbl-wrap" id="ch-grad-t"></div>
@@ -89,9 +94,9 @@
       <div class="card c5">
         <div class="card-top"><div>
           <span class="eyebrow">% que citou a dificuldade</span>
-          <h3>Onde a desigualdade aparece</h3>
-          <p class="read">Calçada ruim e insegurança são queixas transversais. Sombra e carros
-            estacionados sobre a calçada, não.</p>
+          <h3>O que cada grupo aponta como problema</h3>
+          <p class="read">Calçada ruim e insegurança aparecem quase igual nos dois grupos. Falta de
+            sombra e carro estacionado na calçada, não.</p>
         </div><button class="tt-btn" data-tt="ch-dif" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-dif"></div>
         <div class="tbl-wrap" id="ch-dif-t"></div>
@@ -99,42 +104,45 @@
       <div class="card c6">
         <div class="card-top"><div>
           <span class="eyebrow">Nota 1–5 · dia → noite</span>
-          <h3>A noite apaga a cidade para todos — e mais para elas</h3>
-          <p class="read">Segurança percebida durante o dia e durante a noite, por grupo. O comprimento
-            da haste é a queda.</p>
+          <h3>Segurança de dia e de noite, por grupo</h3>
+          <p class="read">Cada linha liga a nota dada à segurança de dia com a nota dada à segurança
+            de noite. Quanto mais comprida a linha, maior a queda. Todos os grupos caem, e as mulheres
+            caem mais.</p>
         </div><button class="tt-btn" data-tt="ch-noite" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-noite"></div>
         <div class="tbl-wrap" id="ch-noite-t"></div>
       </div>
       <div class="card c6">
         <div class="card-top"><div>
-          <span class="eyebrow">Escolaridade como proxy socioeconômica</span>
+          <span class="eyebrow">Escolaridade no lugar da renda</span>
           <h3>Perfil econômico e nota do trecho</h3>
-          <p class="read">O formulário não pergunta renda nem tipo de moradia; escolaridade é a proxy
-            disponível. A relação é fraca e não-monotônica — leia as barras com o n de cada grupo.</p>
+          <p class="read">O formulário não perguntou renda nem tipo de moradia, então usei a
+            escolaridade como aproximação. A relação é fraca e não segue uma ordem clara. Repare no
+            número de respostas de cada barra (o "n") antes de tirar conclusão.</p>
         </div><button class="tt-btn" data-tt="ch-esc" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-esc"></div>
         <div class="tbl-wrap" id="ch-esc-t"></div>
       </div>
     </div>
-    <p class="mnote"><b>Limite da amostra.</b> São 9 pessoas pretas, 25 pardas e 32 brancas.
-      Os contrastes de proporção (sombra, carros) passam no teste de permutação; os de média (nota geral,
-      índices) ficam entre p = 0,08 e p = 0,50. Trate as diferenças de média como hipótese a testar com
-      mais coleta, e as de proporção como achado.</p>
+    <p class="mnote"><b>Cuidado com o tamanho dos grupos.</b> Responderam 9 pessoas pretas, 25 pardas
+      e 32 brancas. As diferenças de porcentagem, como falta de sombra e carro na calçada, passaram no
+      teste e podem ser tratadas como resultado. As diferenças de média, como a nota geral, não
+      passaram: elas servem como pista para investigar com mais entrevistas, não como conclusão.</p>
   </section>
 
   <!-- ================= 3. auditoria ================= -->
   <section id="sec-auditoria">
-    <div class="sec-head"><span class="num">02</span><h2>Auditoria do trecho</h2></div>
-    <p class="sec-note">Duas leituras do mesmo espaço: a nota de 1 a 5 que a pessoa dá a cada elemento
-      (percepção) e o inventário Sim / Parcial / Não do que existe no trecho (presença). As duas escalas
-      são divergentes: partem do ponto neutro ao centro e crescem para os dois lados.</p>
+    <div class="sec-head"><span class="num">02</span><h2>Avaliação do trecho</h2></div>
+    <p class="sec-note">São duas perguntas diferentes sobre o mesmo lugar. Uma pede uma nota de 1 a 5
+      para cada item, ou seja, o que a pessoa achou. A outra pergunta se aquele item existe ali: sim,
+      mais ou menos, ou não. Nos dois gráficos as barras saem do meio, com o que é ruim crescendo para
+      a esquerda e o que é bom crescendo para a direita.</p>
     <div class="grid">
       <div class="card c7">
         <div class="card-top"><div>
           <span class="eyebrow">Distribuição das notas 1–5</span>
-          <h3>Percepção item a item</h3>
-          <p class="read">Ordenado pela média. Segurança noturna e acessibilidade para pessoas com
+          <h3>Notas de 1 a 5, item por item</h3>
+          <p class="read">Da pior para a melhor média. Segurança de noite e acesso para pessoas com
             deficiência são os dois piores itens da pesquisa.</p>
         </div><button class="tt-btn" data-tt="ch-likert" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-likert"></div>
@@ -143,10 +151,10 @@
       </div>
       <div class="card c5">
         <div class="card-top"><div>
-          <span class="eyebrow">Inventário de presença</span>
-          <h3>O que existe no trecho</h3>
-          <p class="read">Bancos, lixeiras e sinalização inclusiva faltam na maioria dos trechos
-            auditados.</p>
+          <span class="eyebrow">Existe no trecho?</span>
+          <h3>Bancos, lixeiras e sinalização</h3>
+          <p class="read">Bancos, lixeiras e sinalização para idosos, crianças e pessoas com
+            deficiência faltam na maior parte dos trechos.</p>
         </div><button class="tt-btn" data-tt="ch-mob" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-mob"></div>
         <div class="legend" id="lg-mob"></div>
@@ -155,19 +163,19 @@
       <div class="card c6">
         <div class="card-top"><div>
           <span class="eyebrow">Nota 0–10 · média por trecho</span>
-          <h3>Ranking dos trechos</h3>
-          <p class="read">O Cenpes e o Parque Olímpico puxam a média para cima; o lado CCMN do CT é o
-            pior trecho com amostra relevante.</p>
+          <h3>Nota média de cada trecho</h3>
+          <p class="read">O Cenpes e o Parque Olímpico têm as melhores notas. Entre os trechos com
+            bastante resposta, o lado do CCMN é o pior.</p>
         </div><button class="tt-btn" data-tt="ch-trecho" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-trecho"></div>
         <div class="tbl-wrap" id="ch-trecho-t"></div>
       </div>
       <div class="card c6">
         <div class="card-top"><div>
-          <span class="eyebrow">Coeficiente de Pearson vs. nota geral</span>
-          <h3>O que move a nota do trecho</h3>
-          <p class="read">A percepção de infraestrutura adequada é o que mais acompanha a nota.
-            Desconforto térmico e número de dificuldades citadas puxam para baixo.</p>
+          <span class="eyebrow">O que anda junto com a nota</span>
+          <h3>O que aparece junto com uma nota alta</h3>
+          <p class="read">Quanto mais comprida a barra, mais aquele item acompanha a nota do trecho.
+            Barras para a direita andam junto com nota alta, e para a esquerda, com nota baixa.</p>
         </div><button class="tt-btn" data-tt="ch-corr" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-corr"></div>
         <div class="tbl-wrap" id="ch-corr-t"></div>
@@ -177,17 +185,19 @@
 
   <!-- ================= 4. conforto termico ================= -->
   <section id="sec-termico">
-    <div class="sec-head"><span class="num">03</span><h2>Conforto térmico em campo</h2></div>
-    <p class="sec-note">Cada entrevista registra a temperatura do ar, a situação locacional do ponto
-      (céu livre, sombra de árvore, sombra de prédio), o isolamento da vestimenta em clo e a sensação
-      térmica declarada na escala ASHRAE de sete pontos, de −3 (muito frio) a +3 (muito calor).</p>
+    <div class="sec-head"><span class="num">03</span><h2>Calor, frio e sombra</h2></div>
+    <p class="sec-note">Em cada entrevista foram anotados a temperatura do ar, o tipo de abrigo onde
+      a pessoa estava (céu livre, sombra de árvore ou sombra de prédio), o quanto a roupa dela protegia
+      do frio e como ela dizia estar se sentindo naquele momento. Essa última resposta vai de −3, muito
+      frio, até +3, muito calor, passando pelo 0, que é nem frio nem calor.</p>
     <div class="grid">
       <div class="card c7">
         <div class="card-top"><div>
           <span class="eyebrow">Temperatura × sensação declarada</span>
-          <h3>A sombra desloca a sensação, não a temperatura</h3>
-          <p class="read">Cada ponto é uma entrevista, com deslocamento aleatório para separar respostas
-            idênticas. Sob sombra de árvore a sensação média é −0,05; a céu livre, −0,71.</p>
+          <h3>Temperatura e sensação, por tipo de abrigo</h3>
+          <p class="read">Cada ponto é uma entrevista. Eles foram espalhados um pouco de propósito
+            para não ficarem em cima uns dos outros. Quem estava na sombra de árvore ficou mais perto
+            do neutro (−0,05) do que quem estava a céu livre (−0,71).</p>
         </div><button class="tt-btn" data-tt="ch-scatter" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-scatter"></div>
         <div class="legend" id="lg-scatter"></div>
@@ -195,19 +205,20 @@
       </div>
       <div class="card c5">
         <div class="card-top"><div>
-          <span class="eyebrow">Escala ASHRAE · distribuição</span>
+          <span class="eyebrow">Como as pessoas disseram estar</span>
           <h3>Sensação térmica declarada</h3>
-          <p class="read">A coleta foi de outono-inverno: a cauda de frio é mais longa que a de calor.</p>
+          <p class="read">A coleta foi entre maio e junho, no outono e no começo do inverno. Por isso
+            há mais respostas do lado do frio.</p>
         </div><button class="tt-btn" data-tt="ch-ashrae" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-ashrae"></div>
         <div class="tbl-wrap" id="ch-ashrae-t"></div>
       </div>
       <div class="card c6">
         <div class="card-top"><div>
-          <span class="eyebrow">Média por situação locacional</span>
-          <h3>Onde a pessoa estava de pé</h3>
-          <p class="read">Comparação de temperatura registrada, desconforto térmico (0 = confortável)
-            e nota do trecho por tipo de abrigo.</p>
+          <span class="eyebrow">Média por tipo de abrigo</span>
+          <h3>Comparação por tipo de abrigo</h3>
+          <p class="read">Três medidas nos três tipos de abrigo: a temperatura anotada, o desconforto
+            (0 é confortável e 3 é muito desconfortável) e a nota do trecho.</p>
         </div><button class="tt-btn" data-tt="ch-sit" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-sit"></div>
         <div class="legend" id="lg-sit"></div>
@@ -215,10 +226,10 @@
       </div>
       <div class="card c6">
         <div class="card-top"><div>
-          <span class="eyebrow">Preferência térmica · escala −3…+3</span>
+          <span class="eyebrow">Como preferiria estar</span>
           <h3>Como preferiria estar se sentindo</h3>
-          <p class="read">Positivo quer mais aquecido, negativo quer mais refrescado. Metade da amostra
-            está satisfeita ("assim mesmo").</p>
+          <p class="read">Para a direita, quem queria estar mais aquecido. Para a esquerda, quem
+            queria estar mais refrescado. Quase metade respondeu que estava bem do jeito que estava.</p>
         </div><button class="tt-btn" data-tt="ch-pref" aria-pressed="false">Tabela</button></div>
         <div class="plot" id="ch-pref"></div>
         <div class="tbl-wrap" id="ch-pref-t"></div>
@@ -229,17 +240,18 @@
   <!-- ================= 5. perfil ================= -->
   <section id="sec-perfil">
     <div class="sec-head"><span class="num">04</span><h2>Quem respondeu</h2></div>
-    <p class="sec-note">A amostra é fortemente universitária: 39 das 66 pessoas são estudantes e 55 estão
-      na Ilha do Fundão. Isso limita a generalização para a cidade e é a principal ressalva
-      metodológica da pesquisa.</p>
+    <p class="sec-note">Quem respondeu é, em boa parte, gente da universidade: 39 das 66 pessoas são
+      estudantes e 55 foram entrevistadas na Ilha do Fundão. Por isso os resultados falam sobre esses
+      trechos, e não sobre a cidade toda. Essa é a maior limitação da pesquisa.</p>
     <div class="grid" id="perfilgrid"></div>
   </section>
 
   <!-- ================= 6. tabela ================= -->
   <section id="sec-dados">
-    <div class="sec-head"><span class="num">05</span><h2>Base normalizada</h2></div>
-    <p class="sec-note">As 66 respostas após padronização, respeitando os filtros acima. Clique num
-      cabeçalho para ordenar. A coluna <code>obs_tratamento</code> registra toda alteração feita no dado bruto.</p>
+    <div class="sec-head"><span class="num">05</span><h2>Os dados</h2></div>
+    <p class="sec-note">As 66 respostas depois da padronização, já respeitando os filtros do topo da
+      página. Clique no nome de uma coluna para ordenar por ela. A coluna <code>obs_tratamento</code>
+      anota o que foi alterado em cada linha.</p>
     <div class="tools">
       <input id="q" type="search" placeholder="Buscar em qualquer campo…" aria-label="Buscar na tabela">
       <select id="colset" class="btn" style="padding:8px 10px" aria-label="Conjunto de colunas">
@@ -258,27 +270,33 @@
       <a href="dados_tratados/dicionario_dados.csv" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <code>dicionario_dados.csv</code> <span>dicionário das 90 colunas</span></a>
       <a href="dados_tratados/dificuldades_long.csv" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        <code>dificuldades_long.csv</code> <span>múltipla escolha em formato longo</span></a>
+        <code>dificuldades_long.csv</code> <span>uma linha por dificuldade citada</span></a>
       <a href="dados_tratados/log_tratamento.csv" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <code>log_tratamento.csv</code> <span>129 alterações registradas</span></a>
     </div>
   </section>
 
   <footer>
-    <p><b style="color:var(--ink-2)">Tratamento dos dados.</b> Temperatura despida da unidade (25 registros);
-      bairro, trecho e situação locacional com grafia padronizada; faixas etárias com notação uniforme;
-      um registro de 38 °C corrigido para 28 °C por erro de digitação (as demais medições do mesmo dia e
-      trecho ficaram entre 27 e 29 °C); um valor de situação locacional inválido convertido em nulo.
-      Vazios foram mantidos vazios, sem imputação: 3 temperaturas, 5 isolamentos de vestimenta e 1 nota geral.
-      Cada alteração está registrada em <code>log_tratamento.csv</code> e sinalizada na coluna <code>obs_tratamento</code>.</p>
-    <p><b style="color:var(--ink-2)">Sobre "moradia".</b> O formulário não contém pergunta de tipo de moradia
-      nem de renda. Onde este painel fala de moradia, a proxy é o vínculo com o território
-      (<code>perfil_respondente</code>: morador, estudante, trabalhador, visitante) combinado ao bairro; onde
-      fala de perfil econômico, a proxy é a escolaridade. Uma pergunta de renda e de tipo de domicílio numa
-      próxima rodada tornaria essa parte da análise conclusiva em vez de indicativa.</p>
-    <p><b style="color:var(--ink-2)">Testes.</b> Correlações são coeficientes de Pearson calculados sobre a
-      fatia filtrada, com exclusão par a par de valores faltantes. Os valores de p citados vêm de testes de
-      permutação bicaudais com 5 000 reamostragens e semente fixa, recalculados para a fatia visível.</p>
+    <p><b style="color:var(--ink-2)">Como os dados foram padronizados.</b> A temperatura estava escrita
+      de várias formas (21°, 21°C, 22C) e ficou só o número, em 25 respostas. Bairro, trecho e tipo de
+      abrigo tiveram a escrita e os acentos unificados, e as faixas de idade ficaram todas no mesmo
+      formato. Uma temperatura de 38 °C foi corrigida para 28 °C, porque era erro de digitação: todas as
+      outras medições do mesmo dia e do mesmo trecho ficaram entre 27 e 29 °C. Uma resposta de tipo de
+      abrigo estava preenchida com uma informação de clima e ficou em branco, já que não havia como
+      saber o valor certo. Os campos vazios continuaram vazios, sem preencher com estimativa: são 3
+      temperaturas, 5 respostas sobre a roupa e 1 nota geral. Cada mudança está registrada no arquivo
+      <code>log_tratamento.csv</code> e marcada na coluna <code>obs_tratamento</code>.</p>
+    <p><b style="color:var(--ink-2)">Sobre a pergunta de moradia.</b> O formulário não perguntou tipo de
+      moradia nem renda. Onde esta página fala de moradia, o que está sendo usado no lugar é o vínculo da
+      pessoa com o lugar (moradora, estudante, trabalhadora ou visitante), junto com o bairro. Onde fala
+      de perfil econômico, o que está sendo usado é a escolaridade. Incluir uma pergunta de renda e de
+      tipo de casa numa próxima rodada deixaria essa parte da análise bem mais firme.</p>
+    <p><b style="color:var(--ink-2)">Sobre as contas.</b> O valor de <b>r</b> que aparece nos gráficos mede
+      se duas respostas andam juntas. Ele vai de −1 a +1, e 0 significa nenhuma ligação. É calculado só
+      com a seleção que está na tela, ignorando quem deixou a pergunta em branco. Quando a página diz
+      que uma diferença tem tantos por cento de chance de ser efeito de quem por acaso respondeu, esse
+      número vem de um teste que embaralha as respostas entre os grupos 5 000 vezes e conta em quantas
+      delas o embaralhamento produz uma diferença do tamanho da que foi observada.</p>
   </footer>
 </div>
 <div id="tip" role="status" aria-live="polite"></div>

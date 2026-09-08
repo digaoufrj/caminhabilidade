@@ -1,7 +1,7 @@
 /* ============================================================
-   Sombra e Calçada — painel da pesquisa de caminhabilidade
-   Graficos em SVG escritos a mao: nenhuma biblioteca externa.
-   Paleta validada para daltonismo nos dois temas.
+      Caminhabilidade Urbana - painel da pesquisa
+   Graficos em SVG escritos a mao, sem nenhuma biblioteca externa.
+   Paleta testada para daltonismo nos dois temas.
    ============================================================ */
 "use strict";
 /* Os dados chegam de assets/dados.js, que le o CSV normalizado.
@@ -129,8 +129,8 @@ function apply(){
   const act = FILTERS.filter(c=>state[c]).map(c=>state[c]);
   if(cur.length < 12 && act.length){
     w.className="warn-slice on";
-    w.textContent = "Fatia pequena ("+cur.length+" resposta"+(cur.length===1?"":"s")+
-      "): médias e correlações abaixo ficam instáveis. Filtros ativos — "+act.join(" · ")+".";
+    w.textContent = "Poucas respostas nesta seleção ("+cur.length+"). Com tão poucos casos as médias "+
+      "e as comparações abaixo variam muito e não são confiáveis. Filtros ativos: "+act.join(", ")+".";
   } else w.className="warn-slice";
   drawAll();
   renderTable();
@@ -219,7 +219,7 @@ function hbar(box,w,{items,max,color="var(--s1)",fmtV=x=>nf(x,2),ticks,rowH=30,l
       const g=el("g",{});
       g.append(el("path",{d:rr(x0,by,sc(d.value),bh,4,"r"),fill:d.color||color}));
       g.append(el("rect",{x:x0,y,width:plotW,height:rowH,fill:"transparent"}));
-      hover(g,TP(d.label,"<b>"+fmtV(d.value)+"</b>"+unit)+(d.n!=null?'<span class="tv" style="color:var(--muted)"> · n = '+d.n+"</span>":"")+(d.note?'<br><span class="tv" style="color:var(--muted)">'+d.note+"</span>":""));
+      hover(g,TP(d.label,"<b>"+fmtV(d.value)+"</b>"+unit)+(d.n!=null?'<span class="tv" style="color:var(--muted)"> · '+d.n+" respostas</span>":"")+(d.note?'<br><span class="tv" style="color:var(--muted)">'+d.note+"</span>":""));
       s.append(g);
       s.append(el("text",{x:x0+plotW+8,y:by+bh-2.5,"font-size":12,"font-weight":600,fill:"var(--ink)",
         "font-variant-numeric":"tabular-nums"},fmtV(d.value)));
@@ -230,7 +230,7 @@ function hbar(box,w,{items,max,color="var(--s1)",fmtV=x=>nf(x,2),ticks,rowH=30,l
   box.append(s);
 }
 function empty(){const d=document.createElement("p");d.className="foot-note";
-  d.textContent="Nenhuma resposta nesta fatia — ajuste os filtros.";return d;}
+  d.textContent="Nenhuma resposta nesta seleção. Ajuste os filtros no topo da página.";return d;}
 
 /* ===== 2. barras agrupadas (2 series) ===== */
 function groupedBar(box,w,{items,series,max,fmtV=pf,unit=""}){
@@ -253,7 +253,7 @@ function groupedBar(box,w,{items,series,max,fmtV=pf,unit=""}){
       g.append(el("path",{d:rr(x0,by,sc(v),bh,4,"r"),fill:series[k].color}));
       g.append(el("rect",{x:x0,y:by-2,width:plotW,height:15,fill:"transparent"}));
       hover(g,TP(d.label,series[k].name+" · <b>"+fmtV(v)+"</b>"+unit)+
-        (d.ns?'<span class="tv" style="color:var(--muted)"> · n = '+d.ns[k]+"</span>":""));
+        (d.ns?'<span class="tv" style="color:var(--muted)"> · '+d.ns[k]+" respostas</span>":""));
       s.append(g);
       s.append(el("text",{x:x0+sc(v)+6,y:by+bh-1.5,"font-size":10.5,fill:"var(--ink-2)",
         "font-variant-numeric":"tabular-nums"},fmtV(v)));
@@ -334,8 +334,8 @@ function divBar(box,w,{items,max=null,fmtV=sf}){
     const g=el("g",{});
     g.append(el("path",{d:rr(v>=0?cx+1:cx-bw-1,by,bw,bh,4,v>=0?"r":"l"),fill:v>=0?"var(--d5)":"var(--d1)"}));
     g.append(el("rect",{x:x0,y,width:plotW,height:rowH,fill:"transparent"}));
-    hover(g,TP(d.label,"r = <b>"+sf(v)+"</b>")+'<span class="tv" style="color:var(--muted)"> · n = '+d.n+
-      "<br>"+(v>=0?"acompanha a alta":"acompanha a queda")+" da nota</span>");
+    hover(g,TP(d.label,"r = <b>"+sf(v)+"</b> (de −1 a +1)")+'<span class="tv" style="color:var(--muted)"> · '+d.n+" respostas<br>"+
+      (v>=0?"anda junto com nota alta":"anda junto com nota baixa")+"</span>");
     s.append(g);
     s.append(el("text",{x:v>=0?cx+bw+7:cx-bw-7,y:by+bh-1.5,"text-anchor":v>=0?"start":"end","font-size":11,
       fill:"var(--ink-2)","font-variant-numeric":"tabular-nums"},fmtV(v)));
@@ -363,7 +363,7 @@ function dumbbell(box,w,{items,series,min=1,max=5}){
       const g=el("g",{});
       g.append(el("circle",{cx:x0+sc(v),cy,r:6,fill:se.color,stroke:"var(--surface)","stroke-width":2}));
       g.append(el("circle",{cx:x0+sc(v),cy,r:13,fill:"transparent"}));
-      hover(g,TP(d.label,se.name+" · <b>"+nf(v,2)+"</b> de 5")+'<span class="tv" style="color:var(--muted)"> · n = '+d.n+"</span>");
+      hover(g,TP(d.label,se.name+" · <b>"+nf(v,2)+"</b> de 5")+'<span class="tv" style="color:var(--muted)"> · '+d.n+" respostas</span>");
       s.append(g);
     });
     s.append(el("text",{x:w-2,y:cy+4,"text-anchor":"end","font-size":11.5,fill:"var(--crit)","font-weight":600,
@@ -394,7 +394,7 @@ function columns(box,w,{items,xlabel=[null,null],fmtV=x=>x}){
       g.append(el("path",{d:rrTop(x,y,bw,bh,4),fill:d.color}));
       g.append(el("rect",{x:padL+i*step,y:padT,width:step,height:plotH,fill:"transparent"}));
       hover(g,TP(d.label,"<b>"+d.value+"</b> resposta"+(d.value===1?"":"s"))+
-        '<span class="tv" style="color:var(--muted)"> · '+Math.round(d.value/tot*100)+"% da fatia</span>");
+        '<span class="tv" style="color:var(--muted)"> · '+Math.round(d.value/tot*100)+"% da seleção</span>");
       s.append(g);
       s.append(el("text",{x:x+bw/2,y:y-5,"text-anchor":"middle","font-size":11,"font-weight":600,
         fill:"var(--ink)","font-variant-numeric":"tabular-nums"},d.value));
@@ -428,7 +428,7 @@ function scatter(box,w,{pts,groups}){
       "font-variant-numeric":"tabular-nums"},t+"°"));}
   s.append(el("text",{x:padL,y:h-10,"font-size":10.5,fill:"var(--muted)"},"temperatura do ar (°C)"));
   s.append(el("text",{x:13,y:padT+plotH/2,"text-anchor":"middle","font-size":9.5,fill:"var(--muted)",
-    transform:"rotate(-90 13 "+(padT+plotH/2)+")"},"← frio    sensação ASHRAE    calor →"));
+    transform:"rotate(-90 13 "+(padT+plotH/2)+")"},"← frio    como se sentia    calor →"));
   const rand=rng(7);
   pts.forEach(p=>{
     const jx=(rand()-.5)*(plotW/(x2-x1))*.62, jy=(rand()-.5)*(plotH/6)*.52;
@@ -475,8 +475,8 @@ const LIK_CATS = ()=>[
   {key:5,name:"5 · muito bom",side:1,color:"var(--d5)"}];
 const MOB_CATS = ()=>[
   {key:0,name:"Não existe",side:-1,color:"var(--d1)"},
-  {key:1,name:"Parcial",side:0,color:"var(--d0)",ink:"var(--ink)"},
-  {key:2,name:"Sim",side:1,color:"var(--d5)"}];
+  {key:1,name:"Mais ou menos",side:0,color:"var(--d0)",ink:"var(--ink)"},
+  {key:2,name:"Existe",side:1,color:"var(--d5)"}];
 
 /* ---- KPIs + tese ---- */
 function renderKpis(){
@@ -486,15 +486,15 @@ function renderKpis(){
   const semBanco=share(cur,"presenca_bancos","Não");
   const sombraImp=avg(cur,"nota_import_arvores_sombra");
   const tiles=[
-    {k:"Nota geral do trecho",v:nf(nota,2),u:" / 10",d:"Média das notas de 0 a 10 dadas ao trecho",
+    {k:"Nota geral do trecho",v:nf(nota,2),u:" / 10",d:"Média das notas de 0 a 10 dadas pelas pessoas",
       pill:nota==null?null:[nota>=7?"good":nota>=5?"warn":"crit",nota>=7?"acima de 7":nota>=5?"entre 5 e 7":"abaixo de 5"]},
-    {k:"Segurança noturna",v:nf(noite,2),u:" / 5",d:"O pior indicador de toda a pesquisa",
-      pill:noite==null?null:["crit","pior item"]},
-    {k:"Evitam áreas por medo",v:pf(evita),u:"",d:"Declaram evitar trajetos por questão de segurança",
-      pill:evita>=.8?["crit","quase toda a amostra"]:null},
-    {k:"Trecho sem bancos",v:pf(semBanco),u:"",d:"Responderam que não há bancos ao longo do trecho",
+    {k:"Segurança de noite",v:nf(noite,2),u:" / 5",d:"A pior nota média de toda a pesquisa",
+      pill:noite==null?null:["crit","pior nota"]},
+    {k:"Evitam ruas por medo",v:pf(evita),u:"",d:"Disseram que evitam certos caminhos por segurança",
+      pill:evita>=.8?["crit","quase todos"]:null},
+    {k:"Trecho sem bancos",v:pf(semBanco),u:"",d:"Disseram que não há banco nenhum no trecho",
       pill:semBanco>=.5?["warn","maioria dos trechos"]:null},
-    {k:"Importância da sombra",v:nf(sombraImp,2),u:" / 5",d:"Maior nota média registrada na pesquisa",
+    {k:"Importância da sombra",v:nf(sombraImp,2),u:" / 5",d:"A maior nota média de toda a pesquisa",
       pill:["good","consenso"]}];
   const box=document.getElementById("kpis"); box.innerHTML="";
   tiles.forEach(t=>{
@@ -504,14 +504,14 @@ function renderKpis(){
     box.append(d);
   });
   const gaps=[
-    {l:"Importância declarada de árvores e sombra",v:sombraImp==null?null:sombraImp/5,
+    {l:"O quanto as pessoas valorizam a sombra",v:sombraImp==null?null:sombraImp/5,
       raw:nf(sombraImp,2)+" / 5",c:"var(--s3)"},
-    {l:"Trechos com bancos sombreados",v:share(cur,"bancos_com_sombra","Sim"),
+    {l:"Trechos onde há banco na sombra",v:share(cur,"bancos_com_sombra","Sim"),
       raw:pf(share(cur,"bancos_com_sombra","Sim")),c:"var(--s2)"},
-    {l:"Paradas com proteção climática",v:share(cur,"parada_com_protecao_climatica","Sim"),
+    {l:"Paradas de ônibus com cobertura",v:share(cur,"parada_com_protecao_climatica","Sim"),
       raw:pf(share(cur,"parada_com_protecao_climatica","Sim")),c:"var(--s2)"}];
   const tb=document.getElementById("thesisbars"); tb.innerHTML="";
-  tb.insertAdjacentHTML("beforeend",'<span class="eyebrow">Demanda declarada vs. oferta no trecho</span>');
+  tb.insertAdjacentHTML("beforeend",'<span class="eyebrow">O que as pessoas querem e o que existe</span>');
   gaps.forEach(g=>{
     const d=document.createElement("div"); d.className="gapbar";
     d.innerHTML='<div class="gl"><span>'+g.l+'</span><b>'+g.raw+'</b></div>'+
@@ -519,15 +519,15 @@ function renderKpis(){
     tb.append(d);
   });
   tb.insertAdjacentHTML("beforeend",'<p style="font-size:12px;color:var(--muted);margin:2px 0 0">'+
-    "A primeira barra é o quanto as pessoas dizem que a sombra importa. As duas seguintes, o quanto ela "+
-    "de fato existe no trecho onde foram entrevistadas.</p>");
+    "A barra de cima é a nota que as pessoas deram à importância da sombra. As duas de baixo mostram "+
+    "o quanto ela existe de fato nos trechos onde elas foram entrevistadas.</p>");
 }
 
 /* ---- 01 gradiente racial ---- */
 const RACAS=["Branca","Parda","Preta"];
 function renderGrad(box,w){
   const panels=[
-    {t:"Amostra completa",rows:cur},
+    {t:"Todas as respostas",rows:cur},
     {t:"Só Ilha do Fundão",rows:cur.filter(r=>V(r,"bairro")==="Fundão")},
     {t:"Só estudantes",rows:cur.filter(r=>V(r,"perfil_respondente")==="Estudante")}];
   const tblRows=[];
@@ -536,7 +536,7 @@ function renderGrad(box,w){
       return {label:ra,value:avg(g,"nota_caminhabilidade"),n:g.length};});
     const head=document.createElement("div");
     head.innerHTML='<span class="eyebrow" style="display:block;margin:'+(i?18:2)+'px 0 2px">'+
-      (i+1)+" · "+p.t+" — n = "+p.rows.length+"</span>";
+      (i+1)+" · "+p.t+" ("+p.rows.length+")</span>";
     box.append(head);
     hbar(box,w,{items,max:10,ticks:[0,5,10],rowH:26,color:"var(--s1)",
       fmtV:x=>nf(x,2),axisFmt:t=>t});
@@ -563,14 +563,15 @@ function renderDif(box,w){
     items.map(d=>[d.label,pf(d.values[0]),pf(d.values[1]),
       (d.gap>=0?"+":"−")+Math.abs(Math.round(d.gap*100))+" pp",d.p==null?"–":nf(d.p,3)]));
   const fn=document.createElement("p"); fn.className="foot-note";
-  fn.textContent="Cada pessoa podia marcar várias dificuldades, então as barras não somam 100%. "+
-    "O rótulo em vermelho marca os contrastes que passam num teste de permutação bicaudal a 5%.";
+  fn.textContent="Cada pessoa podia marcar mais de uma dificuldade, por isso as barras não somam "+
+    "100%. O aviso em vermelho marca as diferenças que dificilmente são efeito de quem por acaso "+
+    "respondeu: menos de 5% de chance.";
   box.append(fn);
 }
 
 /* ---- 01 dia -> noite ---- */
 function renderNoite(box,w){
-  const grp=[["Amostra completa",cur],
+  const grp=[["Todas as respostas",cur],
     ["Feminino",cur.filter(r=>V(r,"genero")==="Feminino")],
     ["Masculino",cur.filter(r=>V(r,"genero")==="Masculino")],
     ["Branca",cur.filter(r=>V(r,"raca_cor_agrupada")==="Branca")],
@@ -598,13 +599,14 @@ const ESC_SHORT={"Ensino Fundamental incompleto":"Fundamental incompleto","Ensin
 function renderEsc(box,w){
   const items=ESC_ORD.map(e=>{const g=cur.filter(r=>V(r,"escolaridade")===e);
     return {label:ESC_SHORT[e],value:g.length?avg(g,"nota_caminhabilidade"):null,n:g.length,
-      note:g.length<4&&g.length?"amostra muito pequena":null};}).filter(d=>d.n>0);
+      note:g.length<4&&g.length?"pouquíssimas respostas":null};}).filter(d=>d.n>0);
   hbar(box,w,{items,max:10,ticks:[0,5,10],rowH:28,color:"var(--s1)",fmtV:x=>nf(x,2),axisFmt:t=>t});
   const r=pearson(cur,"escolaridade_ordem","nota_caminhabilidade");
   const fn=document.createElement("p"); fn.className="foot-note";
-  fn.textContent="Correlação de Pearson entre escolaridade e nota do trecho na fatia atual: r = "+
-    (r==null?"–":sf(r))+". Os dois grupos de menor escolaridade têm 3 e 4 respostas — as médias mais altas "+
-    "do gráfico são também as menos confiáveis.";
+  fn.textContent="Na seleção atual, a ligação entre escolaridade e nota do trecho é de r = "+
+    (r==null?"–":sf(r))+", numa escala que vai de −1 a +1 onde 0 é nenhuma ligação. Os dois grupos de "+
+    "menor escolaridade têm só 3 e 4 respostas, então as médias mais altas do gráfico são também as "+
+    "menos confiáveis.";
   box.append(fn);
   table("ch-esc",["Escolaridade","n","Nota média"],items.map(d=>[d.label,d.n,nf(d.value,2)]));
 }
@@ -621,9 +623,9 @@ function renderLikert(box,w){
   table("ch-likert",["Item","n","1","2","3","4","5","Média"],
     items.map(d=>[d.label,d.n,d.p[1],d.p[2],d.p[3],d.p[4],d.p[5],nf(d.mean,2)]));
   const fn=document.createElement("p"); fn.className="foot-note";
-  fn.textContent="Os números dentro das barras são porcentagens; o valor à direita é a média de 1 a 5. "+
-    "A pergunta sobre importância de árvores e sombra foi deixada fora deste gráfico porque mede "+
-    "importância, não qualidade — ela aparece no topo da página.";
+  fn.textContent="Os números dentro das barras são porcentagens e o valor à direita é a média de 1 "+
+    "a 5. A pergunta sobre árvores e sombra ficou fora deste gráfico porque ela mede o quanto a pessoa "+
+    "acha a sombra importante, e não a qualidade do que existe no trecho. Ela está no começo da página.";
   box.append(fn);
 }
 
@@ -634,7 +636,7 @@ function renderMob(box,w){
     cur.forEach(r=>{const v=V(r,k+"_ord"); if(typeof v==="number"){p[v]=(p[v]||0)+1;vals.push(v);}});
     return {label:lb,p,mean:mean(vals),n:vals.length};
   }).filter(d=>d.n>0).sort((a,b)=>a.mean-b.mean);
-  divStack(box,w,{items,cats:MOB_CATS(),fmtMean:x=>nf(x,2),meanLabel:"0–2"});
+  divStack(box,w,{items,cats:MOB_CATS(),fmtMean:x=>nf(x,2),meanLabel:"0 a 2"});
   legend("lg-mob",MOB_CATS().map(c=>({name:c.name,color:c.color})));
   table("ch-mob",["Elemento","n","Não","Parcial","Sim","Índice 0–2"],
     items.map(d=>[d.label,d.n,d.p[0],d.p[1],d.p[2],nf(d.mean,2)]));
@@ -664,9 +666,10 @@ function renderCorr(box,w){
   divBar(box,w,{items});
   table("ch-corr",["Variável","n","r de Pearson"],items.map(d=>[d.label,d.n,sf(d.value)]));
   const fn=document.createElement("p"); fn.className="foot-note";
-  fn.textContent="Correlação não é causalidade: as variáveis aqui são todas percepções da mesma pessoa "+
-    "na mesma entrevista, então parte da associação é efeito de halo. Desconforto térmico e nº de "+
-    "dificuldades entram com sinal negativo porque valores altos significam pior experiência.";
+  fn.textContent="Andar junto não quer dizer causar. Todas essas respostas vieram da mesma pessoa na "+
+    "mesma entrevista, e quem gostou do trecho tende a dar nota boa para tudo, o que infla os valores. "+
+    "Desconforto térmico e número de dificuldades aparecem para a esquerda porque neles um valor alto "+
+    "significa experiência pior.";
   box.append(fn);
 }
 
@@ -683,16 +686,16 @@ function renderScatter(box,w){
   scatter(box,w,{pts,groups});
   legend("lg-scatter",groups.map(g=>{
     const gp=pts.filter(p=>p.grp===g.name), m=gp.length?mean(gp.map(p=>p.y)):null;
-    return {name:g.name+" — n = "+gp.length+(m==null?"":" · sensação média "+nf(m,2)),color:g.color};
+    return {name:g.name+", "+gp.length+" respostas"+(m==null?"":" · média "+nf(m,2)),color:g.color};
   }),true);
   table("ch-scatter",["Situação locacional","n","Temperatura média","Sensação média (−3…+3)","Desconforto médio"],
     SIT.map(n=>{const g=cur.filter(r=>V(r,"situacao_locacional")===n);
       return [n,g.length,nf(avg(g,"temperatura_c"),1)+" °C",nf(avg(g,"sensacao_termica_escala"),2),
         nf(avg(g,"conforto_termico_escala"),2)];}));
   const fn=document.createElement("p"); fn.className="foot-note";
-  fn.textContent="A sensação média de cada grupo está na legenda abaixo. A sombra de árvore aparece em "+
-    "temperaturas mais altas e ainda assim com sensação mais próxima do neutro — as medições sob árvore "+
-    "foram feitas nos dias e horários mais quentes da coleta, o que reforça o efeito do abrigo.";
+  fn.textContent="A média de cada grupo está na legenda abaixo. As medições na sombra de árvore "+
+    "aconteceram nos dias e horários mais quentes da coleta. Mesmo assim a sensação ficou mais perto "+
+    "do neutro, o que reforça o efeito da sombra.";
   box.append(fn);
 }
 
@@ -711,7 +714,7 @@ function renderAshrae(box,w){
 function renderSit(box,w){
   const S=SERIES();
   const series=[{name:"Temperatura registrada (°C)",color:S.s1},
-    {name:"Desconforto térmico (0 = confortável)",color:S.s2},{name:"Nota do trecho (0–10)",color:S.s3}];
+    {name:"Desconforto (0 é confortável)",color:S.s2},{name:"Nota do trecho (0 a 10)",color:S.s3}];
   const rows=SIT.map(n=>({n,g:cur.filter(r=>V(r,"situacao_locacional")===n)})).filter(d=>d.g.length);
   const sets=[["Temperatura registrada","temperatura_c",32,S.s1,"°C",1,[0,10,20,30]],
               ["Desconforto térmico","conforto_termico_escala",3,S.s2,"",2,[0,1,2,3]],
@@ -727,8 +730,8 @@ function renderSit(box,w){
   legend("lg-sit",series);
   table("ch-sit",["Medida","Situação locacional","n","Média"],tbl);
   const fn=document.createElement("p"); fn.className="foot-note";
-  fn.textContent="Três escalas diferentes, três gráficos separados: sobrepor temperatura e nota num mesmo "+
-    "eixo inventaria uma relação que os dados não têm.";
+  fn.textContent="São três escalas diferentes, por isso estão em três gráficos separados. Colocar "+
+    "temperatura e nota no mesmo eixo daria a impressão de uma relação que os dados não mostram.";
   box.append(fn);
 }
 
@@ -738,7 +741,7 @@ function renderPref(box,w){
     "2":"var(--d1)","3":"var(--d1)"};
   const items=PREFER.map(([v,lb])=>({label:lb,tick:(v>0?"+":"")+v,
     value:cur.filter(r=>V(r,"preferencia_termica_escala")===v).length,color:C[String(v)]}));
-  columns(box,w,{items,xlabel:["quer refrescar","quer aquecer"]});
+  columns(box,w,{items,xlabel:["queria se refrescar","queria se aquecer"]});
   table("ch-pref",["Preferência declarada","Escala","Respostas"],items.map(d=>[d.label,d.tick,d.value]));
 }
 
@@ -748,7 +751,7 @@ const PERFIL_CARDS=[
   ["faixa_etaria","Faixa etária",["<18","18-29","30-44","45-59","60-69","70+"]],
   ["genero","Gênero",null],
   ["escolaridade","Escolaridade",ESC_ORD],
-  ["perfil_respondente","Vínculo com o território",["Morador","Estudante","Trabalhador da região","Visitante"]],
+  ["perfil_respondente","Vínculo com o lugar",["Morador","Estudante","Trabalhador da região","Visitante"]],
   ["freq_caminhada","Frequência de caminhada",
     ["Diariamente","Todos os dias da semana","Alguns dias da semana","Só os fins de semana","Esporadicamente"]]];
 function buildPerfil(){
@@ -766,7 +769,7 @@ function buildPerfil(){
         .filter(d=>d.value>0||!ord);
       hbar(box,w,{items,color:"var(--s1)",rowH:25,fmtV:x=>String(x),
         max:Math.max(...items.map(x=>x.value),1),axisFmt:t=>Math.round(t)});
-      table(id,[titulo,"Respostas","% da fatia"],items.map(x=>[x.label,x.value,
+      table(id,[titulo,"Respostas","% da seleção"],items.map(x=>[x.label,x.value,
         cur.length?Math.round(x.value/cur.length*100)+"%":"–"]));
     });
   });
